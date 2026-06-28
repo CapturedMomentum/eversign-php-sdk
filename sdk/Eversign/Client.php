@@ -72,7 +72,8 @@ class Client {
       */
      public function __construct($accessKey = null, $businessId = 0, $apiBaseUrl = null, int $apiRequestTimeout = Config::GUZZLE_TIMEOUT)
      {
-        if (!class_exists('Doctrine\Common\Annotations\AnnotationRegistry', false) && class_exists('Doctrine\Common\Annotations\AnnotationRegistry')) {
+        if (!class_exists('Doctrine\Common\Annotations\AnnotationRegistry', false) && class_exists('Doctrine\Common\Annotations\AnnotationRegistry')
+            && method_exists('Doctrine\Common\Annotations\AnnotationRegistry', 'registerLoader')) {
             AnnotationRegistry::registerLoader('class_exists');
         }
         $this->accessKey = $accessKey;
