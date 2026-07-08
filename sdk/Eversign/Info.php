@@ -62,7 +62,10 @@ class Info {
     private $businessUrl;
 
     public function __construct() {
-        AnnotationRegistry::registerLoader('class_exists');
+        if (!class_exists('Doctrine\Common\Annotations\AnnotationRegistry', false) && class_exists('Doctrine\Common\Annotations\AnnotationRegistry')
+            && method_exists('Doctrine\Common\Annotations\AnnotationRegistry', 'registerLoader')) {
+            AnnotationRegistry::registerLoader('class_exists');
+        }
     }
 
     /**

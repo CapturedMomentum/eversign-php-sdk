@@ -146,7 +146,8 @@ class DocumentTemplate {
     private $customRequesterName;
 
     public function __construct($templateId = null) {
-        if (!class_exists('Doctrine\Common\Annotations\AnnotationRegistry', false) && class_exists('Doctrine\Common\Annotations\AnnotationRegistry')) {
+        if (!class_exists('Doctrine\Common\Annotations\AnnotationRegistry', false) && class_exists('Doctrine\Common\Annotations\AnnotationRegistry')
+            && method_exists('Doctrine\Common\Annotations\AnnotationRegistry', 'registerLoader')) {
             AnnotationRegistry::registerLoader('class_exists');
         }
         $this->signers = [];
